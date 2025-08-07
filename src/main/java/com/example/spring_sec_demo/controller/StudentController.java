@@ -15,16 +15,16 @@ public class StudentController {
 
     @GetMapping("/hello")
     public String greet(){
-        return "Hello";
+        return "Hello Azure!!!";
     }
 
-    @PostMapping("/addstudent")
-    public String addStudent(Student student)
-    {
-        return "added";
-    }
-    @GetMapping("csrftoken")
-    public CsrfToken getToken(HttpServletRequest request){
-        return (CsrfToken) request.getAttribute(CsrfToken.class.getName());
-    }
+//    @PostMapping("/addstudent")
+//    public String addStudent(Student student)
+//    {
+//        return "added";
+//    }
+//    @GetMapping("csrftoken")
+//    public CsrfToken getToken(HttpServletRequest request){
+//        return (CsrfToken) request.getAttribute(CsrfToken.class.getName());
+//    }
 }

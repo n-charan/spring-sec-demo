@@ -1,4 +1,5 @@
-FROM openjdk:17-jdk-slim as builder
+# ===== Stage 1: Build the application =====
+FROM openjdk:17-jdk-slim AS builder
 
 WORKDIR /app
 
@@ -14,10 +15,8 @@ FROM openjdk:17-jdk-slim
 
 WORKDIR /app
 
-# Copy the application JAR file into the container
 COPY --from=builder /app/target/*.jar app.jar
 
 EXPOSE 80
 
-# Update the ENTRYPOINT to pass the port explicitly
 ENTRYPOINT ["java", "-jar", "app.jar", "--server.port=80"]

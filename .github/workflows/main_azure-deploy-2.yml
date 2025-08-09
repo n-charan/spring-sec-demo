@@ -23,7 +23,7 @@ jobs:
         uses: docker/build-push-action@v3
         with:
           push: true
-          tags: ghcr.io/${{ github.repository_owner }}/spring-sec-demo:${{ github.sha }}
+          tags: ghcr.io/${{ github.repository_owner }}/spring-sec-demo:latest
           file: ./Dockerfile
 
   deploy:
@@ -41,4 +41,4 @@ jobs:
           app-name: 'azure-deploy-2'
           slot-name: 'production'
           publish-profile: ${{ secrets.AzureAppService_PublishProfile_5f4c5ec8ee054dd592ffee7d2812bac8 }}
-          images: 'ghcr.io/${{ github.repository_owner }}/spring-sec-demo:${{ github.sha }}'
+          images: 'ghcr.io/${{ github.repository_owner }}/spring-sec-demo:latest'

@@ -11,30 +11,31 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v2
+      - name: Checkout code
+        uses: actions/checkout@v2
 
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v2
 
-      - name: Log in to GHCR registry
+      - name: Log in to GitHub Container Registry (GHCR)
         uses: docker/login-action@v2
         with:
           registry: ghcr.io
-          username: ${{ secrets.AzureAppService_ContainerUsername_e5aca8fa36e941c6bb46b54604ed567c }}
-          password: ${{ secrets.AzureAppService_ContainerPassword_f1af1ed50dfe42e397d95a88fb28e28a }}
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Build and push container image to registry
+      - name: Build and push container image to GHCR
         uses: docker/build-push-action@v3
         with:
           push: true
-          tags: ghcr.io/n-charan/spring-sec-demo:${{ github.sha }}
+          tags: ghcr.io/${{ github.repository }}:latest
           file: ./Dockerfile
 
   deploy:
     runs-on: ubuntu-latest
     needs: build
     environment:
-      name: production
+      name: 'production'
       url: ${{ steps.deploy-to-webapp.outputs.webapp-url }}
 
     steps:
@@ -42,7 +43,7 @@ jobs:
         id: deploy-to-webapp
         uses: azure/webapps-deploy@v2
         with:
-          app-name: azure-deploy-2
-          slot-name: production
+          app-name: 'azure-deploy-2'
+          slot-name: 'production'
           publish-profile: ${{ secrets.AzureAppService_PublishProfile_ed0610b8b48349049bced682bfc48661 }}
-          images: ghcr.io/n-charan/spring-sec-demo:${{ github.sha }}
+          images: 'ghcr.io/${{ github.repository }}:latest'

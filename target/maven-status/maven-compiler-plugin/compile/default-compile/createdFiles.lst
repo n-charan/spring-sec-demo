@@ -1,0 +1,7 @@
+com\example\spring_sec_demo\controller\StudentController.class
+com\example\spring_sec_demo\SpringSecDemoApplication.class
+com\example\spring_sec_demo\service\MyUserDetailsService.class
+com\example\spring_sec_demo\model\Student.class
+com\example\spring_sec_demo\SecurityConfig.class
+com\example\spring_sec_demo\model\UserPrinciple.class
+com\example\spring_sec_demo\repo\Studentrepo.class

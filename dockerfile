@@ -19,7 +19,7 @@ COPY --from=builder /app/target/*.jar app.jar
 
 EXPOSE 80
 
-ENTRYPOINT ["java", "-jar", "app.jar", "--server.port=80"]
+ENTRYPOINT ["java", "-jar", "app.jar"]
 
 
 # ------------------------------------------------------------

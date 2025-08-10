@@ -23,14 +23,14 @@ jobs:
       uses: docker/login-action@v2
       with:
         registry: https://ghcr.io/
-        username: ${{ secrets.AzureAppService_ContainerUsername_b427b36232d6422199f4573d757711e7 }}
-        password: ${{ secrets.AzureAppService_ContainerPassword_630650c491aa4d9cae68e851434675d7 }}
+        username: ${{ secrets.AzureAppService_ContainerUsername_4112104222f347c395f66675e06763bf }}
+        password: ${{ secrets.AzureAppService_ContainerPassword_2e7758b8519d4ba08068028913cdd547 }}
 
     - name: Build and push container image to registry
       uses: docker/build-push-action@v3
       with:
         push: true
-        tags: ghcr.io/${{ secrets.AzureAppService_ContainerUsername_b427b36232d6422199f4573d757711e7 }}/n-charan/n-charan/spring-sec-demo:${{ github.sha }}
+        tags: ghcr.io/${{ secrets.AzureAppService_ContainerUsername_4112104222f347c395f66675e06763bf }}/n-charan/spring-sec-demo:${{ github.sha }}
         file: ./Dockerfile
 
   deploy:
@@ -47,5 +47,5 @@ jobs:
       with:
         app-name: 'azure-deploy-2'
         slot-name: 'production'
-        publish-profile: ${{ secrets.AzureAppService_PublishProfile_09edfd0cab6c434aac4dae275e4b33a2 }}
-        images: 'ghcr.io/${{ secrets.AzureAppService_ContainerUsername_b427b36232d6422199f4573d757711e7 }}/n-charan/n-charan/spring-sec-demo:${{ github.sha }}'
+        publish-profile: ${{ secrets.AzureAppService_PublishProfile_49d73f3d9fe44b64b363b0ff6f44c50d }}
+        images: 'ghcr.io/${{ secrets.AzureAppService_ContainerUsername_4112104222f347c395f66675e06763bf }}/n-charan/spring-sec-demo:${{ github.sha }}'
